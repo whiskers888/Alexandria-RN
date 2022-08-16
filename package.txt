@@ -1,0 +1,1 @@
+expo install expo-secure-store - для хранения данных в зашифрованном виде
