@@ -17,10 +17,16 @@ export default function Settings() {
     return (
         <SafeAreaView style={gStyle.container}>
             <Button
+                title={'Test'}
+                style={gStyle.input}
+                // onPress={checkNews}
+            />
+            <Button
                 title={'Logout'}
                 style={gStyle.input}
                 onPress={clearToken}
             />
+             
         </SafeAreaView>
     )
 }

@@ -11,6 +11,8 @@ import Settings from './component/Settings';
 import HomeWork from './component/HomeWork';
 import Main from './component/Main';
 import Login from './component/Login';
+import Message from './component/Message';
+import GradeBook from './component/GradeBook';
 
 // импорт контекста аутентификации
 import {AuthContext} from "./context/context";
@@ -62,20 +64,26 @@ export default function App() {
     
     return (
       <AuthContext.Provider value={authContent}>
-        <NavigationContainer>
-          <Drawer.Navigator>
+        <NavigationContainer  >
+          <Drawer.Navigator screenOptions={{
+            headerStyle:{backgroundColor:'#edf3fc'}
+          }}>
           {token !== null ? (
             <>
-              <Drawer.Screen name="Main" component={Main} />
-              <Drawer.Screen name="HomeWork" component={HomeWork} />
-              <Drawer.Screen name="Settings" component={Settings} />
+              <Drawer.Screen name="Главная" component={Main}/>
+              <Drawer.Screen name="Сообщения" component={Message} />
+              <Drawer.Screen name="Курсы" component={HomeWork} />
+              <Drawer.Screen name="Зачетная книжка" component={GradeBook} />
+              <Drawer.Screen name="Настройки" component={Settings} />
             </>
               ) : (
-
                   <>
                   <Drawer.Screen name="Login" 
                   component={Login}  
                   options={{
+                    drawerStyle:{
+                      backgroundColor:"red"
+                    },
                     headerShown: false,
                     swipeEnabled: false,
                   }}  />

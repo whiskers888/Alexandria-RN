@@ -16,6 +16,11 @@ export default function Login () {
   const [pass, setPass] = useState('')
 
   const { signIn } = React.useContext(AuthContext)
+  
+  const user = {
+    'userName':username,
+    'password':pass
+}
 
   const storeToken  = async (token) => {
     try{
@@ -53,8 +58,8 @@ export default function Login () {
             })
             console.log('GOT TOKEN')
           } else {
-            Alert.alert('Ошибка','Введен неправильный логин или пароль')
-            console.log('GOR ERROR OR EMPTY RESULT')
+            Alert.alert('Ошибка','Введен неправильный логин или пароль')// return -1
+            console.log('GOT ERROR OR EMPTY RESULT')
           }
           }
       )

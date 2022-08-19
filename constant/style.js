@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
+import { color } from "react-native-reanimated";
 
 export const gStyle = StyleSheet.create( {
+    //                                      Login.js
     loadingScreen: {
         flex: 1,
         backgroundColor: '#fff',
@@ -37,7 +39,7 @@ export const gStyle = StyleSheet.create( {
         flex: 1,
         justifyContent: "space-around"
      },
-     btnSubmit:{
+    btnSubmit:{
         backgroundColor: "#fff",
         fontSize: 14,
         marginTop:15,
@@ -52,22 +54,69 @@ export const gStyle = StyleSheet.create( {
         alignSelf:"center",
         alignItems: "center",
         width: "50%",
-        
-
-     }
-    //  background: #fff;
-	// font-size: 14px;
-	// margin-top: 30px;
-	// padding: 16px 20px;
-	// border-radius: 26px;
-	// border: 1px solid #D4D3E8;
-	// text-transform: uppercase;
-	// font-weight: 700;
-	// display: flex;
-	// align-items: center;
-	// width: 100%;
-	// color: #4C489D;
-	// box-shadow: 0px 2px 2px #5C5696;
-	// cursor: pointer;
-	// transition: .2s;
+     },
+    //                                      Main.js
+    notification:{
+      width:'99%',
+      marginLeft:4,
+      paddingVertical:8,
+     },
+    notificationName:{
+        fontWeight:'bold',
+        fontSize:16,
+     },
+    notificationItem:{
+        paddingVertical:8,
+        display:'flex',
+        flexDirection:'row',
+     },
+    notificationTime:{
+        fontSize:12,
+        marginLeft:'auto'
+     },
+    borderNotification:{
+        borderLeftWidth:6,
+        paddingLeft:8,
+        borderBottomLeftRadius:4
+     },
+    groupTimeNotif:{
+        textAlign:'center',
+        marginTop:12,
+        color:"#808080"
+    },
+    notificationIsNew:{
+        borderRadius:"50%",
+        width:'5%',
+        height:'90%',
+        backgroundColor:'#33FF00',
+        marginLeft:10,
+        shadowColor:'#33FF00',
+        shadowRadius:8,
+        shadowOpacity:10,
+        // shadowOffset:100
+    },
+    groupZachBook:{
+        marginVertical:12,
+        width:'99%',
+        alignSelf:'center',
+        backgroundColor:'#fafaff' // ebebeb
+    },
+    borderNameGroup:{
+        width:'101%',
+        borderColor:'#edf3fc',
+        borderRadius:8,
+        borderWidth:8,
+        alignSelf:'center',
+    },
+    nameGroupZach:{
+        backgroundColor:"#edf3fc",
+        textAlign:'center',
+        fontSize:14,
+        fontWeight:'bold',
+    },
+    itemMark:{
+        display:'flex',
+        flexDirection:'row',
+        padding:8
+    }
 });
