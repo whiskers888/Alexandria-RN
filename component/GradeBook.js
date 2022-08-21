@@ -3,40 +3,22 @@ import { Text,SafeAreaView, FlatList,View  } from "react-native";
 import * as SecureStore from 'expo-secure-store'; // шифрование
 import { gStyle } from "../constant/style";
 
+import {getGradeBook} from '../requestAPI/getToken'
+
 export default function GradeBook () {
     const [isLoading, setIsLoading] = useState(false)
-    const [token, setToken] = useState('')
     const [countThemCourse, setCountThemCourse] = useState(0)
     const [gradeBook, setGradeBook] = useState([ ])
 
-     // Получение оценок
-     const getGradeBook = () => {
-        setIsLoading(true)
-        let URL = 'https://test.mmis.ru/api/EducationalActivity/ZachBook?studentID=-5'
-        fetch(URL, {
-            headers: {
-                'Cookie': 'authToken='+token
-            }
-        }).then(res => res.json()).then(res => {
-            setCountThemCourse(res.data.groupedZachBook.length)
-            setGradeBook(res.data.groupedZachBook )
-        }).finally(() => setIsLoading(false))
-    }
 
-    //Получаем ключ 
-    useEffect(() => {
-        SecureStore.getItemAsync('secure_token').then((value)=>{
-            if(value){ 
-                setToken(value)
-            }
-        })
-    })
 
     useEffect(() => {
-        if (token !== '') {
-            getGradeBook()
-        }
-    }, [token])
+            setIsLoading(true)
+            getGradeBook().then(res =>{
+                setCountThemCourse(res.data.groupedZachBook.length)
+                setGradeBook(res.data.groupedZachBook )
+            }).finally(()=>setIsLoading(false))
+        }, [])
 
 
     const markItem =({item})=>{
@@ -50,8 +32,7 @@ export default function GradeBook () {
         )
     }
     const groupRenderItem = ({item}) =>{
-        for (let i = 0; i < countThemCourse ; i++) { // выведет 0, затем 1, затем 2
-            console.log(item.key)
+        for (let i = 0; i < countThemCourse ; i++) { 
             return (
             <View style = {gStyle.groupZachBook}>
                 <View style ={gStyle.borderNameGroup}>

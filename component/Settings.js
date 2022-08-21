@@ -1,17 +1,18 @@
 import React from "react";
 import {Button, SafeAreaView, } from 'react-native'
-import * as SecureStore from 'expo-secure-store'; // шифрование
 
 import {AuthContext} from "../context/context";
 import { gStyle } from "../constant/style";
+import { clearToken } from "../requestAPI/getToken";
 
 export default function Settings() {
 
     const {signOut} = React.useContext(AuthContext)
 
-    async function clearToken() {
-        SecureStore.deleteItemAsync('secure_token');
-        signOut()
+    async function exitApp() {
+        clearToken().then(
+            signOut()
+        )
     }
 
     return (
@@ -24,7 +25,7 @@ export default function Settings() {
             <Button
                 title={'Logout'}
                 style={gStyle.input}
-                onPress={clearToken}
+                onPress={exitApp}
             />
              
         </SafeAreaView>

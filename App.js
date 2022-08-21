@@ -17,9 +17,9 @@ import GradeBook from './component/GradeBook';
 // импорт контекста аутентификации
 import {AuthContext} from "./context/context";
 // импорт шифрованного токена 
-import * as SecureStore from 'expo-secure-store';
 
 import { gStyle } from './constant/style'; 
+import { getToken } from './requestAPI/getToken';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,10 +39,10 @@ export default function App() {
   }), [])
 
   useEffect(() => {
-    SecureStore.getItemAsync('secure_token').then((value)=>{
-        if(value){
-            setToken(value)
-        }
+    getToken().then((value)=>{
+      if (value){
+        setToken(value)
+      }
     })
   })
 

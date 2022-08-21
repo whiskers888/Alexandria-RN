@@ -1,65 +1,29 @@
 import React,{useEffect, useState} from "react";
 import {View, Text,SafeAreaView, FlatList } from "react-native";
 
-import * as SecureStore from 'expo-secure-store'; // шифрование
 import { gStyle } from "../constant/style";
 import { StyleSheet } from "react-native";
+
+import {getNews,checkNews} from "../requestAPI/getToken"
 
 export default function Main () {
         
     const [isLoading, setIsLoading] = useState(false)
-    const [token, setToken] = useState('')
     const [newsArray, setNewsArray] = useState([ ]) // Список новостей
-    let count = 0 
 
-    function checkNews(){
-        let URL = 'https://test.mmis.ru/api/Feed/DateViewed'
-        fetch(URL, {
-            method:'POST',
-            headers: {
-                // Authorization:'Bearer ',
-                Cookie: 'authToken='+token,
-                Origin:'https://test.mmis.ru',
-                Host:'test.mmis.ru'
-            },
-            body: JSON.stringify({
-                'data':null,
-                'msg':'Лента',
-                'state':1
-            })
-        }).then(res => res.json()).then(res => {
-            // console.log(res)
+
+    function getNewNews(){
+        getNews().then( listNews =>{
+            setNewsArray(listNews)
+            console.log('Update News')
         })
     }
 
-    // Получение новостей
-    const getNews = () => {
-        setIsLoading(true)
-        let URL = 'https://test.mmis.ru/api/Feed?userID=-5'
-        fetch(URL, {
-            headers: {
-                'Cookie': 'authToken='+token
-            }
-        }).then(res => res.json()).then(res => {
-            // console.log(res.data.feed)
-            setNewsArray(res.data.feed)
-        }).finally(() => setIsLoading(false))
-    }
-
-    //Получаем ключ 
     useEffect(() => {
-        SecureStore.getItemAsync('secure_token').then((value)=>{
-            if(value){
-                setToken(value)
-            }
-        })
-    })
-
-    useEffect(() => {
-        if (token !== '') {
-            getNews()
-        }
-    }, [token])
+            setIsLoading(true)
+            getNewNews()
+            setIsLoading(false)
+        },[])
 
     let date = 0
     function dateComponent(item){
@@ -136,7 +100,7 @@ export default function Main () {
             <FlatList
                 data = {newsArray}
                 renderItem = {renderItem}
-                onRefresh={getNews}
+                onRefresh={getNewNews}
                 refreshing ={isLoading}
             />
         </SafeAreaView>

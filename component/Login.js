@@ -4,10 +4,9 @@ import { StatusBar } from 'expo-status-bar';
 import { gStyle } from '../constant/style';
 import { FontAwesome } from '@expo/vector-icons';
 
-// импорт либы для работы с токеном
-import * as SecureStore from 'expo-secure-store';
 // импорт контекста аутентификации
 import {AuthContext} from "../context/context";
+import useToken from '../requestAPI/getToken';
 
 
 export default function Login () {
@@ -17,51 +16,13 @@ export default function Login () {
 
   const { signIn } = React.useContext(AuthContext)
   
-  const user = {
-    'userName':username,
-    'password':pass
-}
-
-  const storeToken  = async (token) => {
-    try{
-       await SecureStore.setItemAsync('secure_token', token);
-    } catch (e) {
-      console.log('cant save token' + e)
-    }
-  };
-
-  async function clearToken() {
-    SecureStore.deleteItemAsync('secure_token')
-  }
-
-
-  
-
   function submitHandler(){
     if (username !== '' && pass !== ''){
-      let URL = 'https://test.mmis.ru/api/tokenauth'
-      fetch(URL, {
-          method:'POST',
-          headers:{
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            'userName':username,
-            'password':pass
-          })
-      }).then(res => res.json()).then(res => {
-        clearToken()
-          if (res.data.accessToken !== null && res.state == '1') {
-            storeToken(res.data.accessToken).then(() => {
-                signIn()
-            })
-            console.log('GOT TOKEN')
-          } else {
-            Alert.alert('Ошибка','Введен неправильный логин или пароль')// return -1
-            console.log('GOT ERROR OR EMPTY RESULT')
-          }
-          }
+      useToken(username,pass).then(result=>{
+        if (result = 'OK'){
+          signIn()
+        }
+      }
       )
     } else{
       Alert.alert('Внимание','Введите данные в поля для входа в приложение')
