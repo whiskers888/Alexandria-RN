@@ -4,9 +4,9 @@ import {View, Text,SafeAreaView, FlatList } from "react-native";
 import { gStyle } from "../constant/style";
 import { StyleSheet } from "react-native";
 
-import {getNews,checkNews} from "../requestAPI/getToken"
+import {getNews,checkNews} from "../requestAPI/API"
 
-export default function Main () {
+export default function Notifications () {
         
     const [isLoading, setIsLoading] = useState(false)
     const [newsArray, setNewsArray] = useState([ ]) // Список новостей

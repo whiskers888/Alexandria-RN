@@ -3,7 +3,7 @@ import {Button, SafeAreaView, } from 'react-native'
 
 import {AuthContext} from "../context/context";
 import { gStyle } from "../constant/style";
-import { clearToken } from "../requestAPI/getToken";
+import { clearToken } from "../requestAPI/API";
 
 export default function Settings() {
 

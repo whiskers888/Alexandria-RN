@@ -118,5 +118,26 @@ export const gStyle = StyleSheet.create( {
         display:'flex',
         flexDirection:'row',
         padding:8
+    },
+    //                      PROFILE.JS
+    cardFirstInfo:{
+        height:'40%',
+        borderBottomWidth:2,
+        borderBottomColor:'#c1d7f7',
+        borderRadius:15,
+    },
+    avatar:{
+        alignSelf:'center',
+        margin:8,
+        width:'25%',
+        height:'100%',
+        borderWidth:2,
+        borderRadius:100,
+        borderColor:"#c1d7f7"
+    },
+    nameUser:{
+        fontSize:16,
+        fontWeight:"bold",
+        paddingTop:12
     }
 });

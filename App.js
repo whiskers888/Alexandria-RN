@@ -9,17 +9,17 @@ import { NavigationContainer } from '@react-navigation/native';
 // Импорт view
 import Settings from './component/Settings';
 import HomeWork from './component/HomeWork';
-import Main from './component/Main';
+import Notifications from './component/Notifications';
 import Login from './component/Login';
 import Message from './component/Message';
 import GradeBook from './component/GradeBook';
+import Profile from './component/Profile';
 
 // импорт контекста аутентификации
 import {AuthContext} from "./context/context";
-// импорт шифрованного токена 
 
 import { gStyle } from './constant/style'; 
-import { getToken } from './requestAPI/getToken';
+import { getToken,checkMail, getUserID } from './requestAPI/API';
 
 const Drawer = createDrawerNavigator();
 
@@ -53,7 +53,6 @@ export default function App() {
   }, [])
 
   if (isLoading) {
-    
     return (
         <SafeAreaView style={gStyle.container}>
             <ActivityIndicator size='large' />
@@ -70,8 +69,9 @@ export default function App() {
           }}>
           {token !== null ? (
             <>
-              <Drawer.Screen name="Главная" component={Main}/>
-              <Drawer.Screen name="Сообщения" component={Message} />
+              <Drawer.Screen name="Мой профиль" component={Profile}/>
+              <Drawer.Screen name="Уведомления" component={Notifications}/>
+              <Drawer.Screen name="Сообщения"  component={Message}/>
               <Drawer.Screen name="Курсы" component={HomeWork} />
               <Drawer.Screen name="Зачетная книжка" component={GradeBook} />
               <Drawer.Screen name="Настройки" component={Settings} />

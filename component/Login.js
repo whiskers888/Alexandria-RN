@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 // импорт контекста аутентификации
 import {AuthContext} from "../context/context";
-import useToken from '../requestAPI/getToken';
+import useToken from '../requestAPI/API';
 
 
 export default function Login () {

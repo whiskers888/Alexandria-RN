@@ -3,7 +3,7 @@ import { Text,SafeAreaView, FlatList,View  } from "react-native";
 import * as SecureStore from 'expo-secure-store'; // шифрование
 import { gStyle } from "../constant/style";
 
-import {getGradeBook} from '../requestAPI/getToken'
+import {getGradeBook} from '../requestAPI/API'
 
 export default function GradeBook () {
     const [isLoading, setIsLoading] = useState(false)
