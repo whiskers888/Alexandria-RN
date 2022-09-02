@@ -18,6 +18,7 @@ export default function GradeBook () {
                 setCountThemCourse(res.data.groupedZachBook.length)
                 setGradeBook(res.data.groupedZachBook )
             }).finally(()=>setIsLoading(false))
+            console.log(countThemCourse)
         }, [])
 
 
@@ -49,13 +50,17 @@ export default function GradeBook () {
         }
 
     return(
-        <SafeAreaView>
-            <FlatList
-                data = {gradeBook}
-                renderItem = {groupRenderItem}
-                onRefresh={getGradeBook}
-                refreshing ={isLoading}
-            />
+        <SafeAreaView >
+        {countThemCourse === 0 
+        ?( <Text style = {{ fontSize:18, fontWeight:"bold", textAlign:'center', marginTop:"60%"}}> У вас еще нет оценок</Text>)
+        :(<FlatList
+            data = {gradeBook}
+            renderItem = {groupRenderItem}
+            onRefresh={getGradeBook}
+            refreshing ={isLoading}
+        />)
+        }
+            
         </SafeAreaView>
     )
 }

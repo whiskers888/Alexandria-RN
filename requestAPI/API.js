@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store'; // шифрование
 
 const testHost = 'https://test.mmis.ru'
 const originalHost = 'https://stud.sssu.ru'
-const host = testHostr
+const host = originalHost
 
 
 async function storeToken(token) {
@@ -17,7 +17,7 @@ async function storeToken(token) {
 export async function clearToken() {
     return await SecureStore.deleteItemAsync('secure_token')
 }
-// TODO: Выдает 2 токена разом почемуто
+
 export async function getToken(){
   return await SecureStore.getItemAsync('secure_token')
       
@@ -107,7 +107,7 @@ export function getGradeBook(){
 
 // Починить выдачу ID
 export function getInfoStudent(){
-  let URL = host + '/api/UserInfo/Student?studentID=-5'//-73988
+  let URL = host + '/api/UserInfo/Student?studentID=-73988'//-73988
   console.log(URL)
   return getToken().then(value =>{
     return fetch(URL, {
@@ -130,6 +130,32 @@ export function checkMail(){
         }
     }).then(res => res.json()).then(res => {
       return res.data.count
+    })
+  })
+}
+
+export function getInboxMail(type){
+  let URL = host + '/api/Mail/InboxMail?page=1'
+  return getToken().then(value =>{
+    return fetch(URL, {
+        headers: {
+            'Cookie': 'authToken='+value
+        }
+    }).then(res => res.json()).then(res => {
+        return res.data.messages
+      })
+  })
+}
+
+export function getOutMailFromServer(){
+  let URL = host + '/api/Mail/InboxMail?type=1&page=1'
+  return getToken().then(value =>{
+    return fetch(URL, {
+        headers: {
+            'Cookie': 'authToken='+value
+        }
+    }).then(res => res.json()).then(res => {
+      return res.data.messages
     })
   })
 } 

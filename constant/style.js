@@ -69,6 +69,7 @@ export const gStyle = StyleSheet.create( {
         paddingVertical:8,
         display:'flex',
         flexDirection:'row',
+        width:'99%'
      },
     notificationTime:{
         fontSize:12,
@@ -92,8 +93,7 @@ export const gStyle = StyleSheet.create( {
         marginLeft:10,
         shadowColor:'#33FF00',
         shadowRadius:8,
-        shadowOpacity:10,
-        // shadowOffset:100
+        shadowOpacity:10
     },
     groupZachBook:{
         marginVertical:12,
@@ -121,10 +121,12 @@ export const gStyle = StyleSheet.create( {
     },
     //                      PROFILE.JS
     cardFirstInfo:{
-        height:'40%',
-        borderBottomWidth:2,
-        borderBottomColor:'#c1d7f7',
+        margin:8,
+        height:'20%',
+        borderWidth:2,
+        borderColor:'#c1d7f7', //E0E0E0
         borderRadius:15,
+       
     },
     avatar:{
         alignSelf:'center',
@@ -138,6 +140,66 @@ export const gStyle = StyleSheet.create( {
     nameUser:{
         fontSize:16,
         fontWeight:"bold",
-        paddingTop:12
+        padding:8
+    },
+    centeredModal:{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+    },
+    modalView:{
+        width:"95%",
+        // height:'95%',
+        marginTop: '50%',
+        marginStart:'2%',
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 15,
+        alignItems: 'baseline',
+    },
+    btnMore:{
+        borderWidth:1,
+        alignSelf:'center',
+        borderColor:'#34AADC',
+        borderRadius:5,
+        width:'30%',
+        backgroundColor:'#4676D7',
+        alignItems:'center',
+        margin:16,
+        padding: 4
+        
+    },
+    btnMoreText:{
+        fontSize:12,
+        fontWeight:"bold",
+        color:'#fff'
+    },
+    shadow:{
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    cardMsg:{
+        margin:12,
+        display:"flex",
+        flexDirection:'row',
+        width:'80%%',
+        // height:'35%'
+    },
+    avatarMsg:{
+        alignSelf:'center',
+        marginEnd:8,
+        width:'15%',
+        height:'100%',
+        borderWidth:1,
+        borderRadius:100,
+        resizeMode:'stretch',
+        borderColor:"#edf3fc"
     }
 });

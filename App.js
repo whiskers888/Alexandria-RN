@@ -70,8 +70,8 @@ export default function App() {
           {token !== null ? (
             <>
               <Drawer.Screen name="Мой профиль" component={Profile}/>
-              <Drawer.Screen name="Уведомления" component={Notifications}/>
-              <Drawer.Screen name="Сообщения"  component={Message}/>
+              {/* <Drawer.Screen name="Уведомления" component={Notifications}/> */}
+              <Drawer.Screen name="Сообщения"  component={Message} />
               <Drawer.Screen name="Курсы" component={HomeWork} />
               <Drawer.Screen name="Зачетная книжка" component={GradeBook} />
               <Drawer.Screen name="Настройки" component={Settings} />
